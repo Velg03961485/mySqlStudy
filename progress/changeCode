@@ -1,0 +1,63 @@
+1. 手动关闭 mysql 
+打开系统偏好设置 手动关闭数据库
+
+2.进入数据库（一定要进对 是在运行的数据库）
+cd /usr/local/mysql-8.0.18-macos10.14-x86_64/
+ls
+cd bin/
+sudo ./mysqld_safe --skip-grant-tables  (打开数据库权限)
+
+这时候 就可以不需要密码直接访问数据库了
+需要另外打开一个终端
+
+3.输入命令
+进入数据库
+mysql -u root -p
+
+直接enter就能进入，不需要填写密码
+
+use mysql
+
+进入mysql数据库
+
+flush privileges;
+
+刷新权限，会返回（Query OK, 0 rows affected (0.00 sec) ）  表示刷新成功
+
+修改数据库密码
+版本不同修改数据库的命令也不同
+在8.0版本之前
+// set password for 'root'@'localhost' = password('新的密码');
+在8.0版本之后
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'liuXu12!'
+；
+
+提示：1.数据库密码中不能使用@符号 会报错语法错误 （密码组成 字母，数字，大写字母，特殊符号 共计八位）
+ve an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ALTER USER 'root'@'localhost' IDENTIFIED BY 'Lixu@112'' at line 2
+2.记得要 ；  输入完 enter才会返回修改结构
+3.出现   Query OK, 0 rows affected (0.00 sec)   表示修改成功
+
+quit;
+
+推出mysql
+
+
+4.利用新密码进入mysql 
+mysql -u root -p
+输入密码
+mysql> 
+
+
+成功
+
+
+
+
+
+
+
+
+
+
+
+
